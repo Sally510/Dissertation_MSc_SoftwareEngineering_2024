@@ -1,5 +1,5 @@
 {
-  "name": "Cargo Tracking",
+  "name": "JPetStore",
   "entities": [
     {
       "name": "Account",
@@ -129,6 +129,11 @@
       "type": "AGGREGATION"
     },
     {
+      "origin": "LineItem",
+      "destination": "CartItem",
+      "type": "COMPOSITION"
+    },
+    {
       "origin": "Order",
       "destination": "LineItem",
       "type": "COMPOSITION"
@@ -137,6 +142,16 @@
       "origin": "Product",
       "destination": "Category",
       "type": "AGGREGATION"
+    },
+    {
+      "origin": "Sequence",
+      "destination": "Account",
+      "type": "COMPOSITION"
+    },
+    {
+      "origin": "Sequence",
+      "destination": "Order",
+      "type": "COMPOSITION"
     }
   ]
 }
