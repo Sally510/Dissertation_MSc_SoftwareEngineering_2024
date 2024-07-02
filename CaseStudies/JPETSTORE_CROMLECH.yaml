@@ -1,0 +1,354 @@
+- name: CreateAccount
+  consistency: H
+  frequency: 1
+  forced_operations:
+    -
+  database_access:
+    - entity_name: Account
+      write_attributes:
+        - username
+        - password
+        - email
+        - firstName
+        - lastName
+        - status
+        - address1
+        - address2
+        - city
+        - state
+        - zip
+        - country
+        - phone
+        - favouriteCategoryId
+        - languagePreference
+        - listOption
+        - bannerOption
+        - bannerName
+
+- name: UpdateAccount
+  consistency: H
+  frequency: 1
+  forced_operations:
+    -
+  database_access:
+    - entity_name: Account
+      read_attributes:
+        - username
+      write_attributes:
+        - password
+        - email
+        - firstName
+        - lastName
+        - status
+        - address1
+        - address2
+        - city
+        - state
+        - zip
+        - country
+        - phone
+        - favouriteCategoryId
+        - languagePreference
+        - listOption
+        - bannerOption
+        - bannerName
+
+- name: SignIn
+  consistency: H
+  frequency: 1
+  forced_operations:
+    -
+  database_access:
+    - entity_name: Account
+      read_attributes:
+        - username
+        - password
+
+- name: SignOut
+  consistency: H
+  frequency: 1
+  forced_operations:
+    -
+  database_access:
+    - entity_name: Account
+      read_attributes:
+        - username
+
+- name: ViewCategory
+  consistency: H
+  frequency: 1
+  forced_operations:
+    -
+  database_access:
+    - entity_name: Product
+      read_attributes:
+        - productId
+        - name
+
+- name: ViewProduct
+  consistency: H
+  frequency: 1
+  forced_operations:
+    -
+  database_access:
+    - entity_name: Item
+      read_attributes:
+        - itemId
+        - attribute1
+        - attribute2
+        - attribute3
+        - attribute4
+        - attribute5
+        - listPrice
+    - entity_name: Product
+      read_attributes:
+        - productId
+        - name
+
+- name: ViewItem
+  consistency: H
+  frequency: 1
+  forced_operations:
+    -
+  database_access:
+    - entity_name: Item
+      read_attributes:
+        - itemId
+        - productId
+        - listPrice
+        - unitCost
+        - supplierId
+        - status
+        - attribute1
+        - attribute2
+        - attribute3
+        - attribute4
+        - attribute5
+        - quantity
+    - entity_name: Product
+      read_attributes:
+        - productId
+        - name
+
+- name: SearchForProducts
+  consistency: H
+  frequency: 1
+  forced_operations:
+    -
+  database_access:
+    - entity_name: Product
+      read_attributes:
+        - productId
+        - name
+        - description
+
+- name: AddItemToCart
+  consistency: H
+  frequency: 1
+  forced_operations:
+    -
+  database_access:
+    - entity_name: CartItem
+      read_attributes:
+        - inStock
+        - quantity
+        - total
+      write_attributes:
+        - quantity
+        - item
+        - inStock
+        - total
+    - entity_name: Product
+      read_attributes:
+        - productId
+    - entity_name: Item
+      read_attributes:
+        - itemId
+        - attribute1
+        - attribute2
+        - attribute3
+        - attribute4
+        - attribute5
+        - quantity
+        - listPrice
+
+- name: ModifyItemInCart
+  consistency: H
+  frequency: 1
+  forced_operations:
+    -
+  database_access:
+    - entity_name: CartItem
+      read_attributes:
+        - quantity
+      write_attributes:
+        - quantity
+        - total
+    - entity_name: Item
+      read_attributes:
+        - quantity
+
+- name: RemoveItemFromCart
+  consistency: H
+  frequency: 1
+  forced_operations:
+    -
+  database_access:
+    - entity_name: CartItem
+      write_attributes:
+        - item
+
+- name: ViewItemInCart
+  consistency: H
+  frequency: 1
+  forced_operations:
+    -
+  database_access:
+    - entity_name: Product
+      read_attributes:
+        - productId
+    - entity_name: Item
+      read_attributes:
+        - itemId
+        - attribute1
+        - attribute2
+        - attribute3
+        - attribute4
+        - attribute5
+        - quantity
+        - listPrice
+    - entity_name: CartItem
+      read_attributes:
+        - total
+        - quantity
+        - item
+        - inStock
+
+- name: CheckOut
+  consistency: H
+  frequency: 1
+  forced_operations:
+    -
+  database_access:
+    - entity_name: CartItem
+      read_attributes:
+        - total
+        - quantity
+        - item
+        - inStock
+    - entity_name: LineItem
+      write_attributes:
+        - orderId
+        - lineNumber
+        - quantity
+        - itemId
+        - unitPrice
+        - item
+        - total
+
+- name: CreateOrder
+  consistency: H
+  frequency: 1
+  forced_operations:
+    -
+  database_access:
+    - entity_name: Account
+      read_attributes:
+        - username
+    - entity_name: Order
+      read_attributes:
+        - orderId
+      write_attributes:
+        - orderId
+        - username
+        - orderDate
+        - shipAddress1
+        - shipAddress2
+        - shipCity
+        - shipState
+        - shipZip
+        - shipCountry
+        - billAddress1
+        - billAddress2
+        - billCity
+        - billState
+        - billZip
+        - billCountry
+        - courier
+        - totalPrice
+        - billToFirstName
+        - billToLastName
+        - shipToFirstName
+        - shipToLastName
+        - creditCard
+        - expiryDate
+        - cardType
+        - locale
+        - status
+
+- name: ViewOrder
+  consistency: H
+  frequency: 1
+  forced_operations:
+    -
+  database_access:
+    - entity_name: Order
+      read_attributes:
+        - orderId
+        - username
+        - orderDate
+        - shipAddress1
+        - shipAddress2
+        - shipCity
+        - shipState
+        - shipZip
+        - shipCountry
+        - billAddress1
+        - billAddress2
+        - billCity
+        - billState
+        - billZip
+        - billCountry
+        - courier
+        - totalPrice
+        - billToFirstName
+        - billToLastName
+        - shipToFirstName
+        - shipToLastName
+        - creditCard
+        - expiryDate
+        - cardType
+        - locale
+        - status
+    - entity_name: Product
+      read_attributes:
+        - productId
+    - entity_name: Item
+      read_attributes:
+        - itemId
+        - attribute1
+        - attribute2
+        - attribute3
+        - attribute4
+        - attribute5
+        - quantity
+        - listPrice
+    - entity_name: CartItem
+      read_attributes:
+        - total
+        - quantity
+        - item
+
+- name: ListAllOrders
+  consistency: H
+  frequency: 1
+  forced_operations:
+    -
+  database_access:
+    - entity_name: Order
+      read_attributes:
+        - orderId
+        - orderDate
+    - entity_name: LineItem
+      read_attributes:
+        - total

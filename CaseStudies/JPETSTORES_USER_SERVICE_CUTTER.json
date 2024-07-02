@@ -25,29 +25,9 @@
       ]
     },
     {
-      "name": "ModifyAccount",
-      "nanoentitiesRead": [
-        "Account.username",
-        "Account.password",
-        "Account.email",
-        "Account.firstName",
-        "Account.lastName",
-        "Account.status",
-        "Account.address1",
-        "Account.address2",
-        "Account.city",
-        "Account.state",
-        "Account.zip",
-        "Account.country",
-        "Account.phone",
-        "Account.favouriteCategoryId",
-        "Account.languagePreference",
-        "Account.listOption",
-        "Account.bannerOption",
-        "Account.bannerName"
-      ],
+      "name": "UpdateAccount",
+      "nanoentitiesRead": ["Account.username"],
       "nanoentitiesWritten": [
-        "Account.username",
         "Account.password",
         "Account.email",
         "Account.firstName",
@@ -111,9 +91,9 @@
         "Item.attribute3",
         "Item.attribute4",
         "Item.attribute5",
+        "Item.quantity",
         "Product.productId",
-        "Product.name",
-        "Item.quantity"
+        "Product.name"
       ],
       "nanoentitiesWritten": []
     },
