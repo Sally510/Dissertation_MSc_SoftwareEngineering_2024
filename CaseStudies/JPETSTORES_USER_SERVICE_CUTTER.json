@@ -118,20 +118,17 @@
         "Item.attribute4",
         "Item.attribute5",
         "Item.quantity",
-        "CartItem.quantity",
-        "Item.listPrice",
-        "CartItem.total"
+        "Item.listPrice"
       ],
       "nanoentitiesWritten": [
         "CartItem.quantity",
         "CartItem.item",
-        "CartItem.inStock",
         "CartItem.total"
       ]
     },
     {
-      "name": "ModifyItemInCart",
-      "nanoentitiesRead": ["CartItem.quantity", "Item.quantity"],
+      "name": "UpdateCart",
+      "nanoentitiesRead": [ "CartItem.item", "CartItem.inStock"],
       "nanoentitiesWritten": ["CartItem.quantity", "CartItem.total"]
     },
     {
@@ -180,7 +177,7 @@
     },
     {
       "name": "CreateOrder",
-      "nanoentitiesRead": ["Account.username", "Order.orderId"],
+      "nanoentitiesRead": ["Account.username"],
       "nanoentitiesWritten": [
         "Order.orderId",
         "Order.username",

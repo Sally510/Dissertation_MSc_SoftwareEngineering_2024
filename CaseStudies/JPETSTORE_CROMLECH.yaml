@@ -1,3 +1,4 @@
+operations:
 - name: CreateAccount
   consistency: H
   frequency: 1
@@ -151,12 +152,9 @@
     - entity_name: CartItem
       read_attributes:
         - inStock
-        - quantity
-        - total
       write_attributes:
         - quantity
         - item
-        - inStock
         - total
     - entity_name: Product
       read_attributes:
