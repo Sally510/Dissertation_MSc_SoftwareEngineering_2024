@@ -1,4 +1,5 @@
 ﻿{
+  "name": "jpet_girvan",
   "services": [
     {
       "nanoentities": [
@@ -63,7 +64,17 @@
         "Account.listOption",
         "Account.bannerOption",
         "Account.bannerName",
+        "Sequence.name",
+        "Sequence.nextId"
+      ],
+      "id": "C",
+      "name": "Service C"
+    },
+    {
+      "nanoentities": [
+        "Order.orderId",
         "Order.username",
+        "Order.orderDate",
         "Order.shipAddress1",
         "Order.shipAddress2",
         "Order.shipCity",
@@ -86,14 +97,10 @@
         "Order.expiryDate",
         "Order.cardType",
         "Order.locale",
-        "Sequence.name",
-        "Sequence.nextId",
-        "Order.orderDate",
-        "Order.status",
-        "Order.orderId"
+        "Order.status"
       ],
-      "id": "C",
-      "name": "Service C"
+      "id": "D",
+      "name": "Service D"
     }
   ],
   "relations": [
@@ -116,13 +123,13 @@
     },
     {
       "serviceA": "Service A",
-      "serviceB": "Service C",
+      "serviceB": "Service D",
       "sharedEntities": ["LineItem.total"],
       "direction": "INCOMING"
     },
     {
       "serviceA": "Service B",
-      "serviceB": "Service C",
+      "serviceB": "Service D",
       "sharedEntities": [
         "Item.itemId",
         "Item.attribute4",
@@ -138,18 +145,17 @@
         "Item.attribute5"
       ],
       "direction": "INCOMING"
+    },
+    {
+      "serviceA": "Service C",
+      "serviceB": "Service D",
+      "sharedEntities": ["Account.username"],
+      "direction": "INCOMING"
     }
   ],
   "useCaseResponsibility": {
-    "Service C": [
-      "CreateAccount",
-      "UpdateAccount",
-      "SignIn",
-      "SignOut",
-      "CreateOrder",
-      "ViewOrder",
-      "ListAllOrders"
-    ],
+    "Service D": ["CreateOrder", "ViewOrder", "ListAllOrders"],
+    "Service C": ["CreateAccount", "UpdateAccount", "SignIn", "SignOut"],
     "Service B": [
       "ViewProduct",
       "ViewItem",

@@ -1,0 +1,166 @@
+﻿{
+  "name": "jpet_leung",
+  "services": [
+    {
+      "nanoentities": [
+        "Category.categoryId",
+        "Category.name",
+        "Category.description"
+      ],
+      "id": "A",
+      "name": "Service A"
+    },
+    {
+      "nanoentities": [
+        "Item.itemId",
+        "Item.productId",
+        "Item.listPrice",
+        "Item.unitCost",
+        "Item.supplierId",
+        "Item.status",
+        "Item.attribute1",
+        "Item.attribute2",
+        "Item.attribute3",
+        "Item.attribute4",
+        "Item.attribute5",
+        "Item.product",
+        "Item.quantity",
+        "Product.productId",
+        "Product.categoryId",
+        "Product.name",
+        "Product.description",
+        "CartItem.item",
+        "CartItem.quantity",
+        "CartItem.inStock",
+        "CartItem.total"
+      ],
+      "id": "B",
+      "name": "Service B"
+    },
+    {
+      "nanoentities": [
+        "LineItem.orderId",
+        "LineItem.lineNumber",
+        "LineItem.quantity",
+        "LineItem.itemId",
+        "LineItem.unitPrice",
+        "LineItem.item",
+        "LineItem.total"
+      ],
+      "id": "C",
+      "name": "Service C"
+    },
+    {
+      "nanoentities": [
+        "Account.username",
+        "Account.password",
+        "Account.email",
+        "Account.firstName",
+        "Account.lastName",
+        "Account.status",
+        "Account.address1",
+        "Account.address2",
+        "Account.city",
+        "Account.state",
+        "Account.zip",
+        "Account.country",
+        "Account.phone",
+        "Account.favouriteCategoryId",
+        "Account.languagePreference",
+        "Account.listOption",
+        "Account.bannerOption",
+        "Account.bannerName",
+        "Order.orderId",
+        "Order.username",
+        "Order.orderDate",
+        "Order.shipAddress1",
+        "Order.shipAddress2",
+        "Order.shipCity",
+        "Order.shipState",
+        "Order.shipZip",
+        "Order.shipCountry",
+        "Order.billAddress1",
+        "Order.billAddress2",
+        "Order.billCity",
+        "Order.billState",
+        "Order.billZip",
+        "Order.billCountry",
+        "Order.courier",
+        "Order.totalPrice",
+        "Order.billToFirstName",
+        "Order.billToLastName",
+        "Order.shipToFirstName",
+        "Order.shipToLastName",
+        "Order.creditCard",
+        "Order.expiryDate",
+        "Order.cardType",
+        "Order.locale",
+        "Order.status",
+        "Sequence.name",
+        "Sequence.nextId"
+      ],
+      "id": "D",
+      "name": "Service D"
+    }
+  ],
+  "relations": [
+    {
+      "serviceA": "Service B",
+      "serviceB": "Service C",
+      "sharedEntities": [
+        "CartItem.quantity",
+        "CartItem.item",
+        "CartItem.total",
+        "CartItem.inStock"
+      ],
+      "direction": "INCOMING"
+    },
+    {
+      "serviceA": "Service B",
+      "serviceB": "Service D",
+      "sharedEntities": [
+        "Item.itemId",
+        "Item.attribute4",
+        "CartItem.quantity",
+        "Item.attribute3",
+        "Item.quantity",
+        "Item.attribute2",
+        "CartItem.item",
+        "Item.attribute1",
+        "Item.listPrice",
+        "CartItem.total",
+        "Product.productId",
+        "Item.attribute5"
+      ],
+      "direction": "INCOMING"
+    },
+    {
+      "serviceA": "Service C",
+      "serviceB": "Service D",
+      "sharedEntities": ["LineItem.total"],
+      "direction": "INCOMING"
+    }
+  ],
+  "useCaseResponsibility": {
+    "Service D": [
+      "CreateAccount",
+      "UpdateAccount",
+      "SignIn",
+      "SignOut",
+      "CreateOrder",
+      "ViewOrder",
+      "ListAllOrders"
+    ],
+    "Service C": ["CheckOut"],
+    "Service B": [
+      "ViewCatagory",
+      "ViewProduct",
+      "ViewItem",
+      "SearchForProducts",
+      "AddItemToCart",
+      "UpdateCart",
+      "RemoveItemFromCart",
+      "ViewItemInCart"
+    ]
+  }
+}
