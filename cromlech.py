@@ -1449,7 +1449,7 @@ def optimizer(op_num, max_com_cost, num_services, alpha):
     #print(opt_result)
 
     experiment_name = input_file + '_M-' + str(num_services) + '_alpha-' + str(alpha)
-    f = open('results/' + experiment_name + '.txt', 'a')
+    f = open(experiment_name + '.txt', 'a')
     f.write(str(round))
     f.write("\n")
     f.write(str(alpha))
