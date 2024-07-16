@@ -3,110 +3,106 @@
   "services": [
     {
       "nanoentities": [
-        "CartItem.quantity",
-        "CartItem.item",
-        "CartItem.total",
         "CartItem.inStock",
-        "Product.productId",
-        "Item.itemId",
+        "CartItem.item",
+        "CartItem.quantity",
+        "CartItem.total",
         "Item.attribute1",
         "Item.attribute2",
         "Item.attribute3",
         "Item.attribute4",
         "Item.attribute5",
-        "Item.quantity",
+        "Item.itemId",
         "Item.listPrice",
-        "LineItem.total"
+        "Item.quantity",
+        "LineItem.total",
+        "Product.productId"
       ],
       "id": "A",
       "name": "Service A"
     },
     {
       "nanoentities": [
-        "Account.username",
-        "Account.password",
-        "Account.email",
-        "Account.firstName",
-        "Account.lastName",
-        "Account.status",
         "Account.address1",
         "Account.address2",
-        "Account.city",
-        "Account.state",
-        "Account.zip",
-        "Account.country",
-        "Account.phone",
-        "Account.favouriteCategoryId",
-        "Account.languagePreference",
-        "Account.listOption",
+        "Account.bannerName",
         "Account.bannerOption",
-        "Account.bannerName"
+        "Account.city",
+        "Account.country",
+        "Account.email",
+        "Account.favouriteCategoryId",
+        "Account.firstName",
+        "Account.languagePreference",
+        "Account.lastName",
+        "Account.listOption",
+        "Account.password",
+        "Account.phone",
+        "Account.state",
+        "Account.status",
+        "Account.username",
+        "Account.zip"
       ],
       "id": "B",
       "name": "Service B"
     },
     {
       "nanoentities": [
-        "Order.orderId",
-        "Order.username",
-        "Order.orderDate",
-        "Order.shipAddress1",
-        "Order.shipAddress2",
-        "Order.shipCity",
-        "Order.shipState",
-        "Order.shipZip",
-        "Order.shipCountry",
-        "Order.billAddress1",
-        "Order.billAddress2",
-        "Order.billCity",
-        "Order.billState",
-        "Order.billZip",
-        "Order.billCountry",
-        "Order.courier",
-        "Order.totalPrice",
-        "Order.billToFirstName",
-        "Order.billToLastName",
-        "Order.shipToFirstName",
-        "Order.shipToLastName",
-        "Order.creditCard",
-        "Order.expiryDate",
-        "Order.cardType",
-        "Order.locale",
-        "Order.status",
-        "Product.productId",
-        "Item.itemId",
+        "Account.username",
+        "CartItem.item",
+        "CartItem.quantity",
+        "CartItem.total",
         "Item.attribute1",
         "Item.attribute2",
         "Item.attribute3",
         "Item.attribute4",
         "Item.attribute5",
-        "Item.quantity",
+        "Item.itemId",
         "Item.listPrice",
-        "CartItem.total",
-        "CartItem.quantity",
-        "CartItem.item",
-        "CartItem.total",
+        "Item.quantity",
         "LineItem.total",
-        "Account.username"
+        "Order.billAddress1",
+        "Order.billAddress2",
+        "Order.billCity",
+        "Order.billCountry",
+        "Order.billState",
+        "Order.billToFirstName",
+        "Order.billToLastName",
+        "Order.billZip",
+        "Order.cardType",
+        "Order.courier",
+        "Order.creditCard",
+        "Order.expiryDate",
+        "Order.locale",
+        "Order.orderDate",
+        "Order.orderId",
+        "Order.shipAddress1",
+        "Order.shipAddress2",
+        "Order.shipCity",
+        "Order.shipCountry",
+        "Order.shipState",
+        "Order.shipToFirstName",
+        "Order.shipToLastName",
+        "Order.shipZip",
+        "Order.status",
+        "Order.totalPrice",
+        "Order.username",
+        "Product.productId"
       ],
       "id": "C",
       "name": "Service C"
     },
     {
       "nanoentities": [
-        "Item.itemId",
-        "Product.productId",
-        "Product.name",
         "Item.attribute1",
         "Item.attribute2",
         "Item.attribute3",
         "Item.attribute4",
         "Item.attribute5",
+        "Item.itemId",
         "Item.listPrice",
-        "Item.unitCost",
-        "Item.supplierId",
-        "Item.status",
-        "Item.quantity"
+        "Item.quantity",
+        "Product.name",
+        "Product.productId"
       ],
       "id": "D",
       "name": "Service D"
@@ -117,39 +113,39 @@
       "serviceA": "Service A",
       "serviceB": "Service C",
       "sharedEntities": [
-        "CartItem.total",
-        "CartItem.quantity",
-        "CartItem.item"
+        "Item.attribute1",
+        "Item.attribute2",
+        "Item.attribute3",
+        "Item.attribute4",
+        "Item.attribute5",
+        "Item.itemId",
+        "Item.listPrice",
+        "Item.quantity",
+        "LineItem.total",
+        "Product.productId"
       ],
-      "direction": "OUTGOING"
+      "direction": "BIDIRECTIONAL"
     },
     {
       "serviceA": "Service A",
       "serviceB": "Service C",
       "sharedEntities": [
-        "LineItem.total",
-        "Item.itemId",
-        "Item.attribute1",
-        "Item.attribute2",
-        "Item.attribute3",
-        "Item.attribute4",
-        "Item.attribute5",
-        "Item.listPrice",
-        "Item.quantity",
-        "Product.productId"
+        "CartItem.item",
+        "CartItem.quantity",
+        "CartItem.total"
       ],
-      "direction": "BIDIRECTIONAL"
+      "direction": "OUTGOING"
     },
     {
       "serviceA": "Service A",
       "serviceB": "Service D",
       "sharedEntities": [
-        "Item.itemId",
         "Item.attribute1",
         "Item.attribute2",
         "Item.attribute3",
         "Item.attribute4",
         "Item.attribute5",
+        "Item.itemId",
         "Item.listPrice",
         "Item.quantity",
         "Product.productId"
@@ -157,22 +153,38 @@
       "direction": "BIDIRECTIONAL"
     },
     {
-      "serviceA": "Service C",
-      "serviceB": "Service B",
-      "sharedEntities": ["Account.username"],
+      "serviceA": "Service B",
+      "serviceB": "Service C",
+      "sharedEntities": [
+        "Account.username"
+      ],
       "direction": "BIDIRECTIONAL"
     }
   ],
   "useCaseResponsibility": {
     "Service A": [
       "AddItemToCart",
-      "ViewItemInCart",
-      "CheckOut",
+      "UpdateCart",
       "RemoveItemFromCart",
-      "UpdateCart"
+      "ViewItemInCart",
+      "CheckOut"
     ],
-    "Service B": ["CreateAccount", "UpdateAccount", "SignIn", "SignOut"],
-    "Service C": ["CheckOut", "ViewOrder", "CreateOrder", "ListAllOrders"],
-    "Service D": ["ViewProduct", "ViewItem"]
+    "Service B": [
+      "CreateAccount",
+      "UpdateAccount",
+      "SignIn",
+      "SignOut"
+    ],
+    "Service C": [
+      "CreateOrder",
+      "ViewOrder",
+      "ListAllOrders"
+    ],
+    "Service D": [
+      "ViewCatagory",
+      "ViewProduct",
+      "ViewItem",
+      "SearchForProducts"
+    ]
   }
 }

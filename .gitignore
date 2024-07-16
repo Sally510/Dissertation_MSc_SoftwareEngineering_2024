@@ -1,2 +1,4 @@
 /Examples
 /lib
+/__pycache__
+data.dat

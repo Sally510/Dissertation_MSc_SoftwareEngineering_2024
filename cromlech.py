@@ -1,5 +1,6 @@
 import copy
 import yaml
+import json
 from pyvis.network import Network
 from apgl.graph import SparseGraph
 from difflib import SequenceMatcher
@@ -124,7 +125,7 @@ def parse_arch_yaml(yaml_filename):
             op_names = []
             data = yaml.safe_load(stream)
             op_index = 0
-            print(len(data['operations']))
+            # print(len(data['operations']))
             ent_index = len(data['operations'])
             entities = []
             for o in data['operations']:
@@ -136,7 +137,7 @@ def parse_arch_yaml(yaml_filename):
                 graph.update({op_index: []})
                 op_reads.update({op_index: []})
                 op_writes.update({op_index: []})
-                print(o['name'], o['database_access'])
+                # print(o['name'], o['database_access'])
                 for e in o['database_access']:
                     new_ent = Entity(e['entity_name'], ent_index)
                     already_listed = False
@@ -289,6 +290,88 @@ def format_and_draw_complete(microservices, html_filename):
         i += 1
     net.show(html_filename)
 
+def get_direction(attr_a, attr_b):
+    if attr_a == attr_b:
+        return None
+    if attr_a == 'P' and attr_b == 'R':
+        return 'BIDIRECTIONAL'
+    if attr_a == 'P' and attr_b == 'N':
+        return 'OUTGOING'
+    if attr_a == 'N' and attr_b == 'P':
+        return 'INCOMING'
+    return 'BIDIRECTIONAL'
+
+def output_to_microvalid(microservices, json_filename):
+    services = []
+    relations = []
+    use_case_responsibility = {}
+
+    for i, m in enumerate(microservices):
+        service_name = f"Service {chr(65 + i)}"
+        ops = [x for x in m if isinstance(x, int)]
+        attrs = [x for x in m if isinstance(x, str)]
+
+        nanoentities = []
+        for o in ops:
+            operation_name = nodes_dict.get(o).get_name()
+            if service_name not in use_case_responsibility:
+                use_case_responsibility[service_name] = []
+            use_case_responsibility[service_name].append(operation_name)
+
+        for a in attrs:
+            nanoentity_name = attributes_iton.get(int(a[:len(a) - 1]))
+            if nanoentity_name and nanoentity_name not in nanoentities:
+                nanoentities.append(nanoentity_name)
+
+        service = {
+            "nanoentities": nanoentities,
+            "id": chr(65 + i),
+            "name": service_name
+        }
+        services.append(service)
+
+    # Calculate shared entities between each pair of services
+    for i, service_a in enumerate(services):
+        for j, service_b in enumerate(services):
+            if i >= j:
+                continue  # Avoid duplicate pairs and self-pairs
+
+            shared_entities = {
+                "BIDIRECTIONAL": [],
+                "OUTGOING": [],
+                "INCOMING": []
+            }
+            for nanoentity_a in service_a["nanoentities"]:
+                for nanoentity_b in service_b["nanoentities"]:
+                    if nanoentity_a == nanoentity_b:
+                        # Extract attributes (P, N, R) from original lists
+                        attr_a = next((a[-1] for a in microservices[i] if isinstance(a, str) and attributes_iton.get(int(a[:-1])) == nanoentity_a), None)
+                        attr_b = next((a[-1] for a in microservices[j] if isinstance(a, str) and attributes_iton.get(int(a[:-1])) == nanoentity_b), None)
+                        if attr_a and attr_b:
+                            direction = get_direction(attr_a, attr_b)
+                            if direction:
+                                shared_entities[direction].append(nanoentity_a)
+
+            for direction, entities in shared_entities.items():
+                if entities:
+                    relation = {
+                        "serviceA": service_a["name"],
+                        "serviceB": service_b["name"],
+                        "sharedEntities": entities,
+                        "direction": direction
+                    }
+                    relations.append(relation)
+
+    output_json = {
+        "name": "jpet_cromlech",
+        "services": services,
+        "relations": relations,
+        "useCaseResponsibility": use_case_responsibility
+    }
+
+    with open(json_filename, 'w') as json_file:
+        json.dump(output_json, json_file, indent=2)
+
 def format_and_draw_final(microservices, html_filename):
     net = Network(height='2500px', width='100%', bgcolor="#dddddd")
     i = 0
@@ -352,8 +435,8 @@ def format_and_draw_final(microservices, html_filename):
                     net_single.add_edge(nodes_dict.get(o).get_name(), attributes_iton.get(a) + '@' + str(i))
         net_single.show(html_filename + '_' + str(i) + ".html", notebook=False)
         i += 1
-    for k, v in attributes_iton.items():
-        print(k, v)
+    # for k, v in attributes_iton.items():
+        # print(k, v)
     
     leaders = {}
 
