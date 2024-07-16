@@ -1563,6 +1563,7 @@ def optimizer(op_num, max_com_cost, num_services, alpha):
     #print(compute_communication_cost(result_only_nums) / max_com_cost)
     #print(post_processing_communication_cost(opt_result))
     format_and_draw_final(opt_result, input_file + '_M-' + str(num_services) + '_alpha-' + str(alpha) + '.html')
+    output_to_microvalid(opt_result, input_file + '_M-' + str(num_services) + '_alpha-' + str(alpha) + '.json')
 
 def run_experiment(alpha, num_services):
     print("--- " + input_file + " --- num services=" + str(num_services) + " --- alpha=" + str(alpha) + " ---") 
