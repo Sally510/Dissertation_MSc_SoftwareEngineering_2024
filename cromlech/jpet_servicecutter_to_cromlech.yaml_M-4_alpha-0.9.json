@@ -183,7 +183,7 @@
       "SignOut"
     ],
     "Service C": [
-      "ViewCatagory",
+      "ViewCategory",
       "ViewProduct",
       "ViewItem",
       "SearchForProducts"

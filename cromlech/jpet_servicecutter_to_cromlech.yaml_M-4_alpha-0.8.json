@@ -177,7 +177,7 @@
   ],
   "useCaseResponsibility": {
     "Service A": [
-      "ViewCatagory",
+      "ViewCategory",
       "ViewProduct",
       "ViewItem",
       "SearchForProducts"

@@ -58,7 +58,7 @@
       "nanoentitiesWritten": []
     },
     {
-      "name": "ViewCatagory",
+      "name": "ViewCategory",
       "nanoentitiesRead": ["Product.productId", "Product.name"],
       "nanoentitiesWritten": []
     },

@@ -182,7 +182,7 @@
       "CheckOut"
     ],
     "Service C": [
-      "ViewCatagory",
+      "ViewCategory",
       "ViewProduct",
       "ViewItem",
       "SearchForProducts"

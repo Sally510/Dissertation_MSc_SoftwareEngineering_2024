@@ -181,7 +181,7 @@
       "ListAllOrders"
     ],
     "Service D": [
-      "ViewCatagory",
+      "ViewCategory",
       "ViewProduct",
       "ViewItem",
       "SearchForProducts"

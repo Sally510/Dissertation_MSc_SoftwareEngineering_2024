@@ -156,7 +156,7 @@
       "RemoveItemFromCart",
       "ViewItemInCart"
     ],
-    "Service B": ["ViewCatagory", "SearchForProducts"],
+    "Service B": ["ViewCategory", "SearchForProducts"],
     "Service A": [
       "CreateAccount",
       "UpdateAccount",

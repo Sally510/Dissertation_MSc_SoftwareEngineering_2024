@@ -164,6 +164,6 @@
       "RemoveItemFromCart",
       "ViewItemInCart"
     ],
-    "Service A": ["ViewCatagory", "SearchForProducts", "CheckOut"]
+    "Service A": ["ViewCategory", "SearchForProducts", "CheckOut"]
   }
 }
