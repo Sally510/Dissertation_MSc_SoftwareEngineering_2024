@@ -129,13 +129,28 @@ def translate(ch_architecture, sc_services):
 if __name__ == '__main__':
     # yaml_file = sys.argv[1]
     
-
     sc = [
-        ["ViewCategory", "SearchForProducts", "CheckOut"],
-        ["ViewProduct", "ViewItem", "AddItemToCart", "UpdateCart", "RemoveItemFromCart", "ViewItemInCart"],
-        ["CreateAccount", "UpdateAccount", "SignIn", "SignOut"],
-        ["CreateOrder", "ViewOrder", "ListAllOrders"]
+        [
+            "CreateAccount",
+            "UpdateAccount",
+            "SignIn",
+            "SignOut",
+            "CreateOrder",
+            "ViewOrder",
+            "ListAllOrders"
+        ],  # Service A
+        ["ViewCategory", "SearchForProducts"],  # Service B
+        [
+            "ViewProduct",
+            "ViewItem",
+            "AddItemToCart",
+            "UpdateCart",
+            "RemoveItemFromCart",
+            "ViewItemInCart"
+        ],  # Service C
+        ["CheckOut"]  # Service D
     ]
+
 
     yaml_file = 'cromlech\jpet_servicecutter_to_cromlech.yaml'
     output = translate(yaml_file, sc)

@@ -15,3 +15,5 @@ mvn spring-boot:run -Drun.jvmArguments='-Dserver.port=8080'
 
 Cromlech
 python cromlech.py cromlech\jpet_servicecutter_to_cromlech.yaml 4 0.5 60  
+python evaluate_cromlech_solution.py cromlech\jpet_servicecutter_to_cromlech.yaml 0.3
+python evaluate_cromlech_solution.py cromlech\jpet_servicecutter_to_cromlech.yaml 0.3
