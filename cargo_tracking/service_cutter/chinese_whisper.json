@@ -1,0 +1,94 @@
+﻿{
+  "name": "chinese_whisper",
+  "services": [
+    {
+      "nanoentities": [
+        "CarrierMovement.arrivalTime",
+        "CarrierMovement.departureLocation",
+        "CarrierMovement.arrivalLocation",
+        "CarrierMovement.departureTime"
+      ],
+      "id": "A",
+      "name": "Service A"
+    },
+    {
+      "nanoentities": [
+        "Location.unLocode",
+        "Delivery.estimatedArrivalTime",
+        "Delivery.isUnloadedAtDestination",
+        "HandlingEvent.type",
+        "Itinerary.itineraryNumber",
+        "RouteSpecification.arrivalDeadline",
+        "Delivery.transportStatus",
+        "Voyage.voyageNumber",
+        "RouteSpecification.destination",
+        "HandlingEvent.registrationTime",
+        "HandlingEvent.location",
+        "HandlingEvent.completionTime",
+        "Cargo.trackingId",
+        "Location.name",
+        "Delivery.misdirected",
+        "RouteSpecification.origin",
+        "Delivery.routingStatus"
+      ],
+      "id": "B",
+      "name": "Service B"
+    },
+    {
+      "nanoentities": [
+        "Leg.loadLocation",
+        "Leg.loadTime",
+        "Leg.unloadTime",
+        "Leg.unloadLocation"
+      ],
+      "id": "C",
+      "name": "Service C"
+    }
+  ],
+  "relations": [
+    {
+      "serviceA": "Service A",
+      "serviceB": "Service B",
+      "sharedEntities": ["Voyage.voyageNumber"],
+      "direction": "OUTGOING"
+    },
+    {
+      "serviceA": "Service A",
+      "serviceB": "Service C",
+      "sharedEntities": [
+        "CarrierMovement.arrivalTime",
+        "CarrierMovement.departureLocation",
+        "CarrierMovement.arrivalLocation",
+        "CarrierMovement.departureTime"
+      ],
+      "direction": "INCOMING"
+    },
+    {
+      "serviceA": "Service B",
+      "serviceB": "Service C",
+      "sharedEntities": [
+        "Location.unLocode",
+        "Cargo.trackingId",
+        "RouteSpecification.arrivalDeadline",
+        "Itinerary.itineraryNumber",
+        "Voyage.voyageNumber",
+        "RouteSpecification.destination",
+        "RouteSpecification.origin"
+      ],
+      "direction": "INCOMING"
+    }
+  ],
+  "useCaseResponsibility": {
+    "Service C": ["RouteCargo"],
+    "Service B": [
+      "ViewTracking",
+      "ViewCargos",
+      "BookCargo",
+      "ChangeCargoDestination",
+      "Create Location",
+      "Create Voyage",
+      "handleCargoEvent"
+    ],
+    "Service A": ["AddCarrierMovement"]
+  }
+}
