@@ -549,9 +549,9 @@ def compute_communication_cost(microservices):
                 op_scores.update({ent_name: op_scores.get(ent_name) + total_write * (replica_num - 1)})
             else:
                 op_scores.update({ent_name: total_write * (replica_num - 1)})
-    #print("ROP " + str(r_op))
-    #print("REPL " + str(repl) + " - " + str(repl2))
-    #print("WOP " + str(w_op))
+    # print("ROP " + str(r_op))
+    # print("REPL " + str(repl) + " - " + str(repl2))
+    # print("WOP " + str(w_op))
     return w_op + r_op + repl
 
 def post_processing_communication_cost(result):
@@ -1556,12 +1556,12 @@ def optimizer(op_num, max_com_cost, num_services, alpha):
         attrs_num = [int(x[:len(x) - 1]) for x in attrs]
         result_only_nums.append(ops + attrs_num)
 
-    #print(result_only_nums)
-    #print(compute_total_coupling(result_only_nums))
+    print(result_only_nums)
+    print(compute_total_coupling(result_only_nums))
     elect_primary_replicas(result_only_nums)
-    #print(compute_communication_cost(result_only_nums))
-    #print(compute_communication_cost(result_only_nums) / max_com_cost)
-    #print(post_processing_communication_cost(opt_result))
+    print(compute_communication_cost(result_only_nums))
+    print(compute_communication_cost(result_only_nums) / max_com_cost)
+    print(post_processing_communication_cost(opt_result))
     format_and_draw_final(opt_result, input_file + '_M-' + str(num_services) + '_alpha-' + str(alpha) + '.html')
     output_to_microvalid(opt_result, input_file + '_M-' + str(num_services) + '_alpha-' + str(alpha) + '.json')
 

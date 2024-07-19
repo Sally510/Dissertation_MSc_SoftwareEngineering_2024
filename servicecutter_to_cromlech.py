@@ -71,6 +71,6 @@ def convert_json_to_yaml(json_file_path, yaml_file_path):
     except Exception as e:
         print(f"An unexpected error occurred: {e}")
 
-json_file_path = 'service_cutter\jpet_user_representation_servicecutter.json'
-yaml_file_path = 'cromlech\jpet_servicecutter_to_cromlech_1.yaml'
+json_file_path = 'cargo_tracking\service_cutter\ddd_2_user_representations.json'
+yaml_file_path = 'cargo_tracking\cromlech\ddd_cromlech.yaml'
 convert_json_to_yaml(json_file_path, yaml_file_path)

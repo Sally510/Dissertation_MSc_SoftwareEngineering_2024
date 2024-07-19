@@ -39,8 +39,7 @@
     {
       "name": "ChangeCargoDestination",
       "nanoentitiesRead": [
-        "Cargo.trackingId",
-        "RouteSpecification.destination"
+        "Cargo.trackingId"
       ],
       "nanoentitiesWritten": ["RouteSpecification.destination"]
     },

@@ -131,28 +131,22 @@ if __name__ == '__main__':
     
     sc = [
         [
-            "CreateAccount",
-            "UpdateAccount",
-            "SignIn",
-            "SignOut",
-            "CreateOrder",
-            "ViewOrder",
-            "ListAllOrders"
+            "ViewTracking",
+            "ViewCargos",
+            "BookCargo",
+            "ChangeCargoDestination",
+            "handleCargoEvent"
         ],  # Service A
-        ["ViewCategory", "SearchForProducts"],  # Service B
         [
-            "ViewProduct",
-            "ViewItem",
-            "AddItemToCart",
-            "UpdateCart",
-            "RemoveItemFromCart",
-            "ViewItemInCart"
-        ],  # Service C
-        ["CheckOut"]  # Service D
+            "Create Location",
+            "Create Voyage",
+            "AddCarrierMovement"
+        ],  # Service B
+        ["RouteCargo"],  # Service C
     ]
 
 
-    yaml_file = 'cromlech\jpet_servicecutter_to_cromlech.yaml'
+    yaml_file = 'cargo_tracking\cromlech\ddd_cromlech.yaml'
     output = translate(yaml_file, sc)
     print("FINAL FORMAT: " + str(output))
 
