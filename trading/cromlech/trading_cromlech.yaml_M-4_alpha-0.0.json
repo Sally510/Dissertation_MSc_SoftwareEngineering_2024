@@ -1,0 +1,43 @@
+{
+  "name": "jpet_cromlech",
+  "services": [
+    {
+      "nanoentities": [
+        "Account.number",
+        "AccountOwner.address",
+        "Company.companyName",
+        "NaturalPerson.name",
+        "News.image",
+        "News.text",
+        "News.title",
+        "Order.amount",
+        "Order.executed",
+        "Order.expires",
+        "Order.posted",
+        "Order.triggerPrice",
+        "Order.type",
+        "Position.balance",
+        "Recommendation.description",
+        "Stock.identifier",
+        "Stock.stockName"
+      ],
+      "id": "A",
+      "name": "Service A"
+    }
+  ],
+  "relations": [],
+  "useCaseResponsibility": {
+    "Service A": [
+      "PostOrder",
+      "InstructOrder",
+      "ImportPrice",
+      "ReadNews",
+      "ImportNews",
+      "View Recommendations",
+      "SuggestRecommendations",
+      "CreateAccount",
+      "CreateAccountOwner",
+      "viewPortfolio"
+    ]
+  }
+}

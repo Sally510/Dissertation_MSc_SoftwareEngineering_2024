@@ -445,9 +445,10 @@ def compute_communication_cost(microservices):
                 op_scores.update({ent_name: op_scores.get(ent_name) + total_write * (replica_num - 1)})
             else:
                 op_scores.update({ent_name: total_write * (replica_num - 1)})
-    #print("ROP " + str(r_op))
-    #print("REPL " + str(repl) + " - " + str(repl2))
-    #print("WOP " + str(w_op))
+    print("ROP " + str(r_op))
+    print("REPL " + str(repl) + " - " + str(repl2))
+    print("WOP " + str(w_op))
+    print("w_op + r_op + repl " + str(w_op + r_op + repl))
     return w_op + r_op + repl
 
 def post_processing_communication_cost(result):
@@ -1518,13 +1519,15 @@ def evaluate(cromlech_arch, results, alpha=0.5):
     
 if __name__ == '__main__':
     # Input file (without .yaml extension)
-    input_file = "cargo_tracking\cromlech\ddd_cromlech.yaml"
+    # input_file = "cargo_tracking\cromlech\ddd_cromlech.yaml"
+    # input_file = "jpet_store\cromlech\jpet_servicecutter_to_cromlech.yaml"
+    input_file = "trading\cromlech\\trading_cromlech.yaml"
 
     # Alpha
     # alpha = float(sys.argv[1])
     
     # Add here the results to evaluate
-    results = [[0, 1, 2, 3, 8, '100000P', '100005P', '100006P', '100007P', '100008P', '100009P', '100010P', '100011P', '100012N', '100013N', '100014P', '100015P', '100016P', '100017R'], [5, 6, 7, '100001P', '100002P', '100003P', '100004P', '100013P', '100017P'], [4, '100000N', '100001N', '100002N', '100003N', '100004N', '100012P', '100013N', '100014N', '100015N', '100016N', '100017N']]
+    results = [[8, '100001P', '100002P', '100003P'], [0, 1, 5, 6, 7, 9, '100000P', '100001N', '100002N', '100003N', '100007P', '100008P', '100009P', '100010P', '100011P', '100012P', '100013P', '100014P', '100015P', '100016P'], [3, 4, '100004P', '100005P', '100006P', '100015R'], [2, '100011N', '100015R']]
 
 
     output = evaluate(input_file, results, 0.5)

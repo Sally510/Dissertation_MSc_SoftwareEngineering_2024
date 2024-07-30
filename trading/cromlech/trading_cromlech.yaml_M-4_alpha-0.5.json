@@ -1,0 +1,104 @@
+{
+  "name": "jpet_cromlech",
+  "services": [
+    {
+      "nanoentities": [
+        "News.image",
+        "News.text",
+        "News.title",
+        "Stock.identifier"
+      ],
+      "id": "A",
+      "name": "Service A"
+    },
+    {
+      "nanoentities": [
+        "Order.triggerPrice",
+        "Stock.identifier"
+      ],
+      "id": "B",
+      "name": "Service B"
+    },
+    {
+      "nanoentities": [
+        "Account.number",
+        "AccountOwner.address",
+        "Company.companyName",
+        "NaturalPerson.name"
+      ],
+      "id": "C",
+      "name": "Service C"
+    },
+    {
+      "nanoentities": [
+        "Account.number",
+        "Order.amount",
+        "Order.executed",
+        "Order.expires",
+        "Order.posted",
+        "Order.triggerPrice",
+        "Order.type",
+        "Position.balance",
+        "Recommendation.description",
+        "Stock.identifier",
+        "Stock.stockName"
+      ],
+      "id": "D",
+      "name": "Service D"
+    }
+  ],
+  "relations": [
+    {
+      "serviceA": "Service A",
+      "serviceB": "Service B",
+      "sharedEntities": [
+        "Stock.identifier"
+      ],
+      "direction": "BIDIRECTIONAL"
+    },
+    {
+      "serviceA": "Service A",
+      "serviceB": "Service D",
+      "sharedEntities": [
+        "Stock.identifier"
+      ],
+      "direction": "BIDIRECTIONAL"
+    },
+    {
+      "serviceA": "Service B",
+      "serviceB": "Service D",
+      "sharedEntities": [
+        "Order.triggerPrice"
+      ],
+      "direction": "BIDIRECTIONAL"
+    },
+    {
+      "serviceA": "Service C",
+      "serviceB": "Service D",
+      "sharedEntities": [
+        "Account.number"
+      ],
+      "direction": "INCOMING"
+    }
+  ],
+  "useCaseResponsibility": {
+    "Service A": [
+      "ReadNews",
+      "ImportNews"
+    ],
+    "Service B": [
+      "ImportPrice"
+    ],
+    "Service C": [
+      "CreateAccount",
+      "CreateAccountOwner"
+    ],
+    "Service D": [
+      "PostOrder",
+      "InstructOrder",
+      "View Recommendations",
+      "SuggestRecommendations",
+      "viewPortfolio"
+    ]
+  }
+}

@@ -1,0 +1,167 @@
+operations:
+- name: PostOrder
+  consistency: L
+  frequency: 1
+  forced_operations: []
+  database_access:
+  - entity_name: Account
+    read_attributes:
+    - number
+  - entity_name: Stock
+    read_attributes:
+    - identifier
+    - stockName
+  - entity_name: Order
+    write_attributes:
+    - posted
+    - expires
+    - triggerPrice
+    - executed
+    - type
+    - amount
+- name: InstructOrder
+  consistency: L
+  frequency: 1
+  forced_operations: []
+  database_access:
+  - entity_name: PaymentInfo
+    read_attributes:
+    - cashAccount
+  - entity_name: Instruction
+    write_attributes:
+    - instructedTime
+  - entity_name: Order
+    write_attributes:
+    - executed
+  - entity_name: Position
+    write_attributes:
+    - balance
+- name: ImportPrice
+  consistency: L
+  frequency: 1
+  forced_operations: []
+  database_access:
+  - entity_name: Order
+    read_attributes:
+    - triggerPrice
+  - entity_name: Stock
+    read_attributes:
+    - identifier
+  - entity_name: Price
+    write_attributes:
+    - dateTime
+    - price
+    - currency
+- name: ReadNews
+  consistency: L
+  frequency: 1
+  forced_operations: []
+  database_access:
+  - entity_name: Stock
+    read_attributes:
+    - identifier
+  - entity_name: News
+    read_attributes:
+    - title
+    - text
+    - image
+- name: ImportNews
+  consistency: L
+  frequency: 1
+  forced_operations: []
+  database_access:
+  - entity_name: Stock
+    read_attributes:
+    - identifier
+  - entity_name: News
+    write_attributes:
+    - title
+    - text
+    - image
+- name: View Recommendations
+  consistency: L
+  frequency: 1
+  forced_operations: []
+  database_access:
+  - entity_name: Account
+    read_attributes:
+    - number
+  - entity_name: Recommendation
+    read_attributes:
+    - description
+  - entity_name: Stock
+    read_attributes:
+    - identifier
+    - stockName
+- name: SuggestRecommendations
+  consistency: L
+  frequency: 1
+  forced_operations: []
+  database_access:
+  - entity_name: Account
+    read_attributes:
+    - number
+  - entity_name: Stock
+    read_attributes:
+    - identifier
+    - stockName
+  - entity_name: Position
+    read_attributes:
+    - balance
+  - entity_name: Recommendation
+    write_attributes:
+    - description
+- name: CreateAccount
+  consistency: L
+  frequency: 1
+  forced_operations: []
+  database_access:
+  - entity_name: AccountOwner
+    read_attributes:
+    - address
+  - entity_name: NaturalPerson
+    read_attributes:
+    - name
+  - entity_name: Company
+    read_attributes:
+    - companyName
+  - entity_name: Account
+    write_attributes:
+    - number
+- name: CreateAccountOwner
+  consistency: L
+  frequency: 1
+  forced_operations: []
+  database_access:
+  - entity_name: AccountOwner
+    write_attributes:
+    - address
+  - entity_name: NaturalPerson
+    write_attributes:
+    - name
+  - entity_name: Company
+    write_attributes:
+    - companyName
+- name: viewPortfolio
+  consistency: L
+  frequency: 1
+  forced_operations: []
+  database_access:
+  - entity_name: Account
+    read_attributes:
+    - number
+  - entity_name: Position
+    read_attributes:
+    - balance
+  - entity_name: Stock
+    read_attributes:
+    - identifier
+    - stockName
+  - entity_name: Order
+    read_attributes:
+    - triggerPrice
+    - amount
+    - posted
+    - expires
+    - executed
+    - type

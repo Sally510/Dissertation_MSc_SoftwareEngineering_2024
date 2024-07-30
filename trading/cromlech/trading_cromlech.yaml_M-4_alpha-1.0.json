@@ -1,0 +1,101 @@
+{
+  "name": "jpet_cromlech",
+  "services": [
+    {
+      "nanoentities": [
+        "News.image",
+        "News.text",
+        "News.title",
+        "Stock.identifier"
+      ],
+      "id": "A",
+      "name": "Service A"
+    },
+    {
+      "nanoentities": [
+        "Account.number",
+        "Position.balance",
+        "Recommendation.description",
+        "Stock.identifier",
+        "Stock.stockName"
+      ],
+      "id": "B",
+      "name": "Service B"
+    },
+    {
+      "nanoentities": [
+        "Account.number",
+        "AccountOwner.address",
+        "Company.companyName",
+        "NaturalPerson.name"
+      ],
+      "id": "C",
+      "name": "Service C"
+    },
+    {
+      "nanoentities": [
+        "Account.number",
+        "Order.amount",
+        "Order.executed",
+        "Order.expires",
+        "Order.posted",
+        "Order.triggerPrice",
+        "Order.type",
+        "Position.balance",
+        "Stock.identifier",
+        "Stock.stockName"
+      ],
+      "id": "D",
+      "name": "Service D"
+    }
+  ],
+  "relations": [
+    {
+      "serviceA": "Service A",
+      "serviceB": "Service B",
+      "sharedEntities": [
+        "Stock.identifier"
+      ],
+      "direction": "INCOMING"
+    },
+    {
+      "serviceA": "Service B",
+      "serviceB": "Service C",
+      "sharedEntities": [
+        "Account.number"
+      ],
+      "direction": "OUTGOING"
+    },
+    {
+      "serviceA": "Service B",
+      "serviceB": "Service D",
+      "sharedEntities": [
+        "Account.number",
+        "Position.balance",
+        "Stock.identifier",
+        "Stock.stockName"
+      ],
+      "direction": "OUTGOING"
+    }
+  ],
+  "useCaseResponsibility": {
+    "Service A": [
+      "ReadNews",
+      "ImportNews"
+    ],
+    "Service B": [
+      "View Recommendations",
+      "SuggestRecommendations"
+    ],
+    "Service C": [
+      "CreateAccount",
+      "CreateAccountOwner"
+    ],
+    "Service D": [
+      "PostOrder",
+      "InstructOrder",
+      "ImportPrice",
+      "viewPortfolio"
+    ]
+  }
+}

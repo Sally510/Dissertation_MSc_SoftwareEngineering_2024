@@ -1,0 +1,80 @@
+﻿{
+  "name": "chinese_whisper",
+  "services": [
+    {
+      "nanoentities": [
+        "Order.executed",
+        "Order.amount",
+        "PaymentInfo.cashAccount",
+        "Order.triggerPrice",
+        "Stock.stockName",
+        "Stock.identifier",
+        "Order.type",
+        "Order.posted",
+        "Instruction.instructedTime",
+        "Order.expires",
+        "Position.balance",
+        "Recommendation.description",
+        "Account.number"
+      ],
+      "id": "A",
+      "name": "Service A"
+    },
+    {
+      "nanoentities": [
+        "Company.companyName",
+        "AccountOwner.address",
+        "NaturalPerson.name"
+      ],
+      "id": "B",
+      "name": "Service B"
+    },
+    {
+      "nanoentities": ["Price.currency", "Price.price", "Price.dateTime"],
+      "id": "C",
+      "name": "Service C"
+    },
+    {
+      "nanoentities": ["News.image", "News.title", "News.text"],
+      "id": "D",
+      "name": "Service D"
+    }
+  ],
+  "relations": [
+    {
+      "serviceA": "Service A",
+      "serviceB": "Service B",
+      "sharedEntities": [
+        "Company.companyName",
+        "AccountOwner.address",
+        "NaturalPerson.name"
+      ],
+      "direction": "OUTGOING"
+    },
+    {
+      "serviceA": "Service A",
+      "serviceB": "Service C",
+      "sharedEntities": ["Order.triggerPrice", "Stock.identifier"],
+      "direction": "INCOMING"
+    },
+    {
+      "serviceA": "Service A",
+      "serviceB": "Service D",
+      "sharedEntities": ["Stock.identifier"],
+      "direction": "INCOMING"
+    }
+  ],
+  "useCaseResponsibility": {
+    "Service D": ["ReadNews", "ImportNews"],
+    "Service C": ["ImportPrice"],
+    "Service B": ["CreateAccountOwner"],
+    "Service A": [
+      "PostOrder",
+      "InstructOrder",
+      "View Recommendations",
+      "SuggestRecommendations",
+      "CreateAccount",
+      "viewPortfolio"
+    ]
+  }
+}

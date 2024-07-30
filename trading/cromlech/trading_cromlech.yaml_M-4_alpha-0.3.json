@@ -1,0 +1,78 @@
+{
+  "name": "jpet_cromlech",
+  "services": [
+    {
+      "nanoentities": [
+        "Account.number",
+        "Order.amount",
+        "Order.executed",
+        "Order.expires",
+        "Order.posted",
+        "Order.triggerPrice",
+        "Order.type",
+        "Position.balance",
+        "Recommendation.description",
+        "Stock.identifier",
+        "Stock.stockName"
+      ],
+      "id": "A",
+      "name": "Service A"
+    },
+    {
+      "nanoentities": [
+        "News.image",
+        "News.text",
+        "News.title",
+        "Stock.identifier"
+      ],
+      "id": "B",
+      "name": "Service B"
+    },
+    {
+      "nanoentities": [
+        "Account.number",
+        "AccountOwner.address",
+        "Company.companyName",
+        "NaturalPerson.name"
+      ],
+      "id": "C",
+      "name": "Service C"
+    }
+  ],
+  "relations": [
+    {
+      "serviceA": "Service A",
+      "serviceB": "Service B",
+      "sharedEntities": [
+        "Stock.identifier"
+      ],
+      "direction": "BIDIRECTIONAL"
+    },
+    {
+      "serviceA": "Service A",
+      "serviceB": "Service C",
+      "sharedEntities": [
+        "Account.number"
+      ],
+      "direction": "BIDIRECTIONAL"
+    }
+  ],
+  "useCaseResponsibility": {
+    "Service A": [
+      "PostOrder",
+      "InstructOrder",
+      "ImportPrice",
+      "View Recommendations",
+      "SuggestRecommendations",
+      "viewPortfolio"
+    ],
+    "Service B": [
+      "ReadNews",
+      "ImportNews"
+    ],
+    "Service C": [
+      "CreateAccount",
+      "CreateAccountOwner"
+    ]
+  }
+}

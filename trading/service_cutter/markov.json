@@ -1,0 +1,90 @@
+﻿{
+  "name": "markov_result",
+  "services": [
+    {
+      "nanoentities": [
+        "Company.companyName",
+        "AccountOwner.address",
+        "NaturalPerson.name"
+      ],
+      "id": "A",
+      "name": "Service A"
+    },
+    {
+      "nanoentities": [
+        "Order.posted",
+        "Order.executed",
+        "Order.amount",
+        "Instruction.instructedTime",
+        "PaymentInfo.cashAccount",
+        "Order.expires",
+        "Position.balance",
+        "Order.triggerPrice",
+        "Recommendation.description",
+        "Stock.stockName",
+        "Account.number",
+        "Order.type"
+      ],
+      "id": "B",
+      "name": "Service B"
+    },
+    {
+      "nanoentities": [
+        "News.image",
+        "News.title",
+        "News.text",
+        "Stock.identifier"
+      ],
+      "id": "C",
+      "name": "Service C"
+    },
+    {
+      "nanoentities": ["Price.currency", "Price.price", "Price.dateTime"],
+      "id": "D",
+      "name": "Service D"
+    }
+  ],
+  "relations": [
+    {
+      "serviceA": "Service A",
+      "serviceB": "Service B",
+      "sharedEntities": [
+        "Company.companyName",
+        "AccountOwner.address",
+        "NaturalPerson.name"
+      ],
+      "direction": "INCOMING"
+    },
+    {
+      "serviceA": "Service B",
+      "serviceB": "Service C",
+      "sharedEntities": ["Stock.identifier"],
+      "direction": "OUTGOING"
+    },
+    {
+      "serviceA": "Service B",
+      "serviceB": "Service D",
+      "sharedEntities": ["Order.triggerPrice"],
+      "direction": "INCOMING"
+    },
+    {
+      "serviceA": "Service C",
+      "serviceB": "Service D",
+      "sharedEntities": ["Stock.identifier"],
+      "direction": "INCOMING"
+    }
+  ],
+  "useCaseResponsibility": {
+    "Service D": ["ImportPrice"],
+    "Service C": ["ReadNews", "ImportNews"],
+    "Service B": [
+      "PostOrder",
+      "InstructOrder",
+      "View Recommendations",
+      "SuggestRecommendations",
+      "CreateAccount",
+      "viewPortfolio"
+    ],
+    "Service A": ["CreateAccountOwner"]
+  }
+}

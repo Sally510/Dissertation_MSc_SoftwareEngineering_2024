@@ -130,23 +130,21 @@ if __name__ == '__main__':
     # yaml_file = sys.argv[1]
     
     sc = [
+        ["CreateAccountOwner"],  # Service A
         [
-            "ViewTracking",
-            "ViewCargos",
-            "BookCargo",
-            "ChangeCargoDestination",
-            "handleCargoEvent"
-        ],  # Service A
-        [
-            "Create Location",
-            "Create Voyage",
-            "AddCarrierMovement"
+            "PostOrder",
+            "InstructOrder",
+            "View Recommendations",
+            "SuggestRecommendations",
+            "CreateAccount",
+            "viewPortfolio"
         ],  # Service B
-        ["RouteCargo"],  # Service C
+        ["ReadNews", "ImportNews"],  # Service C
+        ["ImportPrice"]  # Service D
     ]
 
-
-    yaml_file = 'cargo_tracking\cromlech\ddd_cromlech.yaml'
+    # yaml_file = 'cargo_tracking\cromlech\ddd_cromlech.yaml'
+    yaml_file = 'trading\cromlech\\trading_cromlech.yaml'
     output = translate(yaml_file, sc)
     print("FINAL FORMAT: " + str(output))
 
