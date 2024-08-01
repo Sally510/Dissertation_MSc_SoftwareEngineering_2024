@@ -1,6 +1,7 @@
 import subprocess
 
-base_command = "python cromlech.py trading\cromlech\\trading_cromlech.yaml 4"
+# base_command = "python cromlech.py trading\cromlech\\trading_cromlech.yaml 4"
+base_command = "python cromlech.py cargo_tracking\cromlech\ddd_cromlech.yaml 3"
 start_value = 0.0
 step = 0.1
 iterations = 11
